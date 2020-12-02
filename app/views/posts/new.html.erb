@@ -1,0 +1,18 @@
+<h3>Post Form</h3>
+<!--Just like w/ Sinatra, forms need an action and method. action is the posts_path (/posts)-->
+<!-- ActionView sub-gem of Rails allows us to use helper methods that can streamline the template code -->
+<%= form_tag posts_path do %>
+    
+    <label>Post title:</label><br>
+    <!--post[title] hash... equivalent to params[:post][:title], Rails apps use the model[attribute] syntax for name attributes. -->
+    <%= text_field_tag :'post[title]' %><br>
+
+    <label>Post description:</label><br>
+    <%= text_area_tag :'post[description]' %><br>
+
+    <!-- Protects site from hackers, it checks that the person making the form request is actually the person who started the session.  -->
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= submit_tag "Submit Post" %>
+
+<% end %>
+<!-- <%= params.inspect %> -->
